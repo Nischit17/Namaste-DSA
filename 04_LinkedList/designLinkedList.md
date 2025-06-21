@@ -28,3 +28,52 @@ MyLinkedList.prototype.addAtHead = function (val) {
   this.size++;
 };
 ```
+
+### 4) Add At Tail
+
+```js
+MyLinkedList.prototype.addAtTail = function (val) {
+  const newNode = new Node(val);
+
+  if (this.head === null) {
+    this.head = newNode;
+  } else {
+    let curr = this.head;
+    while (curr.next !== null) {
+      curr = curr.next;
+    }
+    curr.next = newNode;
+  }
+  this.size++;
+};
+```
+
+### 5) Add At Index
+
+```js
+MyLinkedList.prototype.addAtIndex = function (index, val) {
+  if (index < 0 || index > this.size) {
+    return;
+  }
+
+  if (index === 0) {
+    this.addAtHead(val);
+    return;
+  }
+
+  if (index === this.size) {
+    this.addAtTail(val);
+    return;
+  }
+
+  const newNode = new Node(val);
+  let curr = this.head;
+  for (let i = 0; i < index - 1; i++) {
+    curr = curr.next;
+  }
+
+  newNode.next = curr.next;
+  curr.next = newNode;
+  this.size++;
+};
+```
